@@ -1,4 +1,4 @@
-package com.example.leobank.dto;
+package com.example.apibank.dto;
 
 public class TransferenciaDto {
     private Long remetenteId;

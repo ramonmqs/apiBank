@@ -1,10 +1,10 @@
-package com.example.leobank;
+package com.example.apibank;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class LeoBankApplicationTests {
+class ApiBankApplicationTests {
 
     @Test
     void contextLoads() {

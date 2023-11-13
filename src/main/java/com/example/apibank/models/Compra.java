@@ -1,4 +1,4 @@
-package com.example.leobank.models;
+package com.example.apibank.models;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

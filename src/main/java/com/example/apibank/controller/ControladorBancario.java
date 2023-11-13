@@ -1,9 +1,9 @@
-package com.example.leobank.controller;
+package com.example.apibank.controller;
 
-import com.example.leobank.dto.TransferenciaDto;
-import com.example.leobank.models.Compra;
-import com.example.leobank.models.Usuario;
-import com.example.leobank.service.ServicoBancario;
+import com.example.apibank.dto.TransferenciaDto;
+import com.example.apibank.models.Compra;
+import com.example.apibank.models.Usuario;
+import com.example.apibank.service.ServicoBancario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

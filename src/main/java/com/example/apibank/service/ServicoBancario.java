@@ -1,8 +1,8 @@
-package com.example.leobank.service;
+package com.example.apibank.service;
 
-import com.example.leobank.models.Compra;
-import com.example.leobank.models.Usuario;
-import com.example.leobank.repository.UserRepository;
+import com.example.apibank.models.Compra;
+import com.example.apibank.models.Usuario;
+import com.example.apibank.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

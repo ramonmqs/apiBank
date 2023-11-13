@@ -1,6 +1,6 @@
-package com.example.leobank.repository;
+package com.example.apibank.repository;
 
-import com.example.leobank.models.Usuario;
+import com.example.apibank.models.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
