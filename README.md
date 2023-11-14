@@ -1,56 +1,115 @@
 # API Bank
 
-API Bank é uma aplicação web que simula um banco digital. Ela foi construída usando uma arquitetura RESTful e permite aos usuários realizar várias operações bancárias, como verificar saldo, depositar dinheiro, realizar compras e transferências.
+Este é um projeto de API Rest em Spring Boot para um sistema bancário simples.
 
-## Endpoints
+A aplicação está atualmente hospedada em [https://api-bank-3fim.onrender.com](https://api-bank-3fim.onrender.com).
 
-A API possui os seguintes endpoints:
+## Visão Geral
 
-- `POST /api/compra`: Este endpoint permite ao usuário realizar uma compra. Ele recebe um objeto `Compra` no corpo da solicitação e retorna uma mensagem indicando se a compra foi aprovada ou negada.
-
-- `POST /api/depositar`: Este endpoint permite ao usuário depositar dinheiro em sua conta. Ele recebe o ID do usuário e o valor do depósito como parâmetros da solicitação.
-
-- `GET /api/saldo`: Este endpoint permite ao usuário verificar seu saldo. Ele recebe o ID do usuário como parâmetro da solicitação e retorna um objeto `Usuario` com as informações do usuário, incluindo o saldo.
-
-- `POST /api/usuarios`: Este endpoint permite criar um novo usuário. Ele recebe um objeto `Usuario` no corpo da solicitação e retorna o objeto `Usuario` criado.
-
-- `GET /api/usuarios`: Este endpoint retorna uma lista de todos os usuários.
-
-- `PUT /api/usuarios/{id}/inativar`: Este endpoint permite inativar um usuário. Ele recebe o ID do usuário como parâmetro do caminho.
-
-- `PUT /api/usuarios/{id}/status`: Este endpoint permite alterar o status de um usuário. Ele recebe o ID do usuário como parâmetro do caminho e um objeto com a chave `ativo` no corpo da solicitação.
-
-- `GET /api/usuarios/{cpf}`: Este endpoint permite buscar um usuário por CPF. Ele recebe o CPF do usuário como parâmetro do caminho.
-
-- `POST /api/transferir`: Este endpoint permite realizar uma transferência entre dois usuários. Ele recebe um objeto `TransferenciaDto` no corpo da solicitação.
-
-## Tecnologias
-
-O projeto foi desenvolvido com as seguintes tecnologias:
-
-- [Spring Boot](https://spring.io/projects/spring-boot): Um framework Java que facilita a criação de aplicações stand-alone baseadas em Spring.
-
-- [PostgreSQL](https://www.postgresql.org/): Um sistema de gerenciamento de banco de dados relacional de código aberto.
-
-- [Hibernate](https://hibernate.org/): Uma framework para o mapeamento objeto-relacional para a linguagem Java.
+O **API Bank** é uma aplicação bancária que oferece funcionalidades básicas, como realização de compras, depósitos, consulta de saldo, gerenciamento de usuários e transferências entre contas.
 
 ## Configuração
 
-Para rodar o projeto localmente, você precisa configurar o arquivo `application.properties` com as informações do seu banco de dados PostgreSQL:
+### Requisitos do Sistema
+
+- Java 11 ou superior
+- Maven
+- PostgreSQL
+
+### Configuração do Banco de Dados
+
+O projeto utiliza um banco de dados PostgreSQL. Certifique-se de ter um servidor PostgreSQL em execução. As configurações do banco de dados podem ser ajustadas no arquivo `application.properties`:
 
 ```properties
 spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
-spring.datasource.url=jdbc:postgresql://<seu_host>/<seu_banco_de_dados>
-spring.datasource.username=<seu_usuario>
-spring.datasource.password=<sua_senha>
+spring.datasource.url=jdbc:postgresql://seu-host-do-postgres/sua-base-de-dados
+spring.datasource.username=seu-usuario
+spring.datasource.password=sua-senha
 spring.jpa.hibernate.ddl-auto=update
 spring.jpa.generate-ddl=true
 spring.jpa.show-sql=true
-spring.autoconfigure.exclude=org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
 ```
 
-## Execução
+### Compilação e Execução
 
-Para executar o projeto, você pode usar a ferramenta Spring Boot Maven Plugin com o comando `mvn spring-boot:run`.
+Para compilar e executar o projeto localmente, use o seguinte comando:
+
+```bash
+mvn spring-boot:run
+```
+
+O aplicativo estará disponível em [https://api-bank-3fim.onrender.com](https://api-bank-3fim.onrender.com).
+
+## Endpoints
+
+A API fornece os seguintes endpoints:
+
+- `POST /api/compra`: Realiza uma compra.
+- `POST /api/depositar`: Realiza um depósito na conta de um usuário.
+- `GET /api/saldo`: Verifica o saldo de um usuário.
+- `POST /api/usuarios`: Cria um novo usuário.
+- `GET /api/usuarios`: Lista todos os usuários ativos.
+- `PUT /api/usuarios/{id}/inativar`: Inativa um usuário.
+- `PUT /api/usuarios/{id}/status`: Altera o status de um usuário (ativo/inativo).
+- `GET /api/usuarios/{cpf}`: Obtém informações sobre um usuário específico por CPF.
+- `POST /api/transferir`: Realiza uma transferência entre contas.
+
+## Exemplos de Uso
+
+1. **Realizar uma compra:**
+
+```bash
+curl -X POST -H "Content-Type: application/json" -d '{"usuarioId": 1, "valor": 500.0}' https://api-bank-3fim.onrender.com/api/compra
+```
+
+2. **Realizar um depósito:**
+
+```bash
+curl -X POST -H "Content-Type: application/json" -d '{"usuarioId": 1, "valor": 1000.0}' https://api-bank-3fim.onrender.com/api/depositar
+```
+
+3. **Verificar saldo:**
+
+```bash
+curl https://api-bank-3fim.onrender.com/api/saldo?usuarioId=1
+```
+
+4. **Criar um novo usuário:**
+
+```bash
+curl -X POST -H "Content-Type: application/json" -d '{"nome": "Nome do Usuário", "cpf": "123.456.789-01", "saldo": 1000.0}' https://api-bank-3fim.onrender.com/api/usuarios
+```
+
+5. **Listar todos os usuários:**
+
+```bash
+curl https://api-bank-3fim.onrender.com/api/usuarios
+```
+
+6. **Inativar um usuário:**
+
+```bash
+curl -X PUT https://api-bank-3fim.onrender.com/api/usuarios/1/inativar
+```
+
+7. **Alterar o status de um usuário:**
+
+```bash
+curl -X PUT -H "Content-Type: application/json" -d '{"ativo": false}' https://api-bank-3fim.onrender.com/api/usuarios/1/status
+```
+
+8. **Buscar usuário por CPF:**
+
+```bash
+curl https://api-bank-3fim.onrender.com/api/usuarios/123.456.789-01
+```
+
+9. **Realizar transferência:**
+
+```bash
+curl -X POST -H "Content-Type: application/json" -d '{"remetenteId": 1, "destinatarioId": 2, "valor": 200.0}' https://api-bank-3fim.onrender.com/api/transferir
+```
+
+Lembre-se de substituir os valores nos exemplos pelos dados reais da sua aplicação. Este README fornece um guia básico; sinta-se à vontade para expandi-lo com mais informações específicas do seu projeto.
 
 
