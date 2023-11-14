@@ -110,9 +110,6 @@ public class ServicoBancario {
         return userRepository.findByCpf(cpf);
     }
 
-    public List<Usuario> listarTodosUsuarios() {
-        return userRepository.findAll();
-    }
 
 
 }
